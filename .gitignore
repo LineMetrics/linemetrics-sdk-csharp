@@ -1,0 +1,7 @@
+/obj
+/bin
+/TestConsole
+*.csproj
+*.csproj.user
+*.sln
+*.suo

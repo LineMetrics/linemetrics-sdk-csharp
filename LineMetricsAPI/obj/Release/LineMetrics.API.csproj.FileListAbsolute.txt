@@ -1,0 +1,12 @@
+D:\Code\VS2010\LineMetrics\LineMetricsAPI\LineMetricsAPI\bin\Release\LineMetrics.API.dll
+D:\Code\VS2010\LineMetrics\LineMetricsAPI\LineMetricsAPI\bin\Release\LineMetrics.API.pdb
+D:\Code\VS2010\LineMetrics\LineMetricsAPI\LineMetricsAPI\obj\Release\LineMetrics.API.dll
+D:\Code\VS2010\LineMetrics\LineMetricsAPI\LineMetricsAPI\obj\Release\LineMetrics.API.pdb
+C:\Users\Peter\SkyDrive\Dokumente\LineMetrics\LineMetricsAPI\LineMetricsAPI\bin\Release\LineMetrics.API.dll
+C:\Users\Peter\SkyDrive\Dokumente\LineMetrics\LineMetricsAPI\LineMetricsAPI\bin\Release\LineMetrics.API.pdb
+C:\Users\Peter\SkyDrive\Dokumente\LineMetrics\LineMetricsAPI\LineMetricsAPI\obj\Release\LineMetrics.API.dll
+C:\Users\Peter\SkyDrive\Dokumente\LineMetrics\LineMetricsAPI\LineMetricsAPI\obj\Release\LineMetrics.API.pdb
+D:\OneDrive\Dokumente\LineMetrics\LineMetricsAPI\LineMetricsAPI\bin\Release\LineMetrics.API.dll
+D:\OneDrive\Dokumente\LineMetrics\LineMetricsAPI\LineMetricsAPI\bin\Release\LineMetrics.API.pdb
+D:\OneDrive\Dokumente\LineMetrics\LineMetricsAPI\LineMetricsAPI\obj\Release\LineMetrics.API.dll
+D:\OneDrive\Dokumente\LineMetrics\LineMetricsAPI\LineMetricsAPI\obj\Release\LineMetrics.API.pdb
