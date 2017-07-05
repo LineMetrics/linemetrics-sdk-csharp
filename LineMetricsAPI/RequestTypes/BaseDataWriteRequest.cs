@@ -15,7 +15,7 @@ namespace LineMetrics.API.RequestTypes
     [KnownType(typeof(Bool))]
     [KnownType(typeof(DataTypes.String))]
     [KnownType(typeof(DataTypes.Timestamp))]
-    public abstract class   BaseDataWriteRequest : BaseRequest
+    public abstract class BaseDataWriteRequest : BaseRequest
     {
         internal override Uri BuildRequestUri(Uri baseUri, string uriPath, string uriPathAppendix = null, bool skipRequestParameters = false)
         {
