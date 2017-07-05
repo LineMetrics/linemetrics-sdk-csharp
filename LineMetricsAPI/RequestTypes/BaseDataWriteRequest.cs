@@ -1,9 +1,6 @@
 ﻿using LineMetrics.API.DataTypes;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
 using LineMetrics.API.Extensions;
 
 namespace LineMetrics.API.RequestTypes
@@ -15,6 +12,7 @@ namespace LineMetrics.API.RequestTypes
     [KnownType(typeof(Bool))]
     [KnownType(typeof(DataTypes.String))]
     [KnownType(typeof(DataTypes.Timestamp))]
+    [KnownType(typeof(Table))]
     public abstract class BaseDataWriteRequest : BaseRequest
     {
         internal override Uri BuildRequestUri(Uri baseUri, string uriPath, string uriPathAppendix = null, bool skipRequestParameters = false)

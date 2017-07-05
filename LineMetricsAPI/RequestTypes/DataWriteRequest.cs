@@ -1,10 +1,6 @@
 ﻿using LineMetrics.API.DataTypes;
-using LineMetrics.API.ReturnTypes;
-using System;
 using System.Runtime.Serialization;
-using LineMetrics.API.Extensions;
 using System.Collections.Generic;
-using LineMetrics.API.Helper;
 
 namespace LineMetrics.API.RequestTypes
 {
@@ -15,6 +11,7 @@ namespace LineMetrics.API.RequestTypes
     [KnownType(typeof(Bool))]
     [KnownType(typeof(DataTypes.String))]
     [KnownType(typeof(DataTypes.Timestamp))]
+    [KnownType(typeof(Table))]
     public class DataWriteRequest : BaseDataWriteRequest
     {
         List<Base> payLoad;

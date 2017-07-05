@@ -42,5 +42,10 @@ namespace LineMetrics.API.Helper
                 return dict.Count;
             }
         }
+
+        public bool TryGetValue(K key, out V value)
+        {
+            return dict.TryGetValue(key, out value);
+        }
     }
 }
