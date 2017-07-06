@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using System.Linq;
 
 namespace LineMetrics.API.Helper
 {
@@ -42,5 +43,12 @@ namespace LineMetrics.API.Helper
                 return dict.Count;
             }
         }
+
+        public bool TryGetValue(K key, out V value)
+        {
+            return dict.TryGetValue(key, out value);
+        }
+
+        public IList<K> Keys { get { return dict.Keys.ToList(); } }
     }
 }

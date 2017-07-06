@@ -1,6 +1,7 @@
 ﻿using LineMetrics.API.Exceptions;
 using LineMetrics.API.Extensions;
 using LineMetrics.API.RequestTypes;
+using LineMetrics.API.Services;
 using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
@@ -36,7 +37,7 @@ namespace LineMetrics.API.ReturnTypes
                 {
                     if (_value == null)
                     {
-                        _value = (LineMetrics.API.DataTypes.Base)ServiceInstance.DataService.LoadObjectFromDictionary(dataDictionary, DataTypes.Output);
+                        _value = (LineMetrics.API.DataTypes.Base)ServiceBase.LoadObjectFromDictionary(dataDictionary, DataTypes.Output);
                     }
                 }
                 return _value;

@@ -1,4 +1,5 @@
-﻿using LineMetrics.API.Exceptions;
+﻿using LineMetrics.API.DataTypes;
+using LineMetrics.API.Exceptions;
 using LineMetrics.API.ReturnTypes;
 using System;
 using System.Collections;
@@ -11,6 +12,7 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Web.Script.Serialization;
+using LineMetrics.API.Extensions;
 
 namespace LineMetrics.API.Services
 {
@@ -59,24 +61,24 @@ namespace LineMetrics.API.Services
             return true;
         }
 
-        internal string Serialize(object obj)
+        internal static string Serialize(object obj)
         {
             JavaScriptSerializer serializer = new JavaScriptSerializer();
             return serializer.Serialize(obj);
         }
 
-        internal object DeSerialize(string json)
+        internal static object DeSerialize(string json)
         {
             var serializer = new JavaScriptSerializer();
             return serializer.DeserializeObject(json);
         }
 
-        internal T LoadObjectFromDictionary<T>(Dictionary<string, object> data) where T : ObjectBase
+        internal static T LoadObjectFromDictionary<T>(Dictionary<string, object> data) where T : ObjectBase
         {
             return LoadObjectFromDictionary(data, typeof(T)) as T;
         }
 
-        internal object LoadObjectFromDictionary(Dictionary<string, object> data, Type targetType)
+        internal static object LoadObjectFromDictionary(Dictionary<string, object> data, Type targetType)
         {
             // TODO check if type is assetbase?
 
@@ -88,7 +90,11 @@ namespace LineMetrics.API.Services
 
                 if (attr != null && data.ContainsKey(attr.Name))
                 {
-                    propInfo.SetValue(instance, data[attr.Name], null);
+                    var val = data[attr.Name];
+                    var propType = propInfo.PropertyType.IsNullableType() ? Nullable.GetUnderlyingType(propInfo.PropertyType) : propInfo.PropertyType;
+                    var convertedValue = Convert.ChangeType(val, propType);
+
+                    propInfo.SetValue(instance, convertedValue, null);
                 }
             }
 
@@ -98,7 +104,11 @@ namespace LineMetrics.API.Services
 
                 if (attr != null && data.ContainsKey(attr.Name))
                 {
-                    fieldInfo.SetValue(instance, data[attr.Name]);
+                    var val = data[attr.Name];
+                    var propType = fieldInfo.FieldType.IsNullableType() ? Nullable.GetUnderlyingType(fieldInfo.FieldType) : fieldInfo.FieldType;
+                    var convertedValue = Convert.ChangeType(val, propType);
+
+                    fieldInfo.SetValue(instance, convertedValue);
                 }
             }
 
@@ -111,7 +121,7 @@ namespace LineMetrics.API.Services
             {
                 throw new ServiceException("AuthorizationToken must not be null!");
             }
-            client.Headers["Authorization"] = String.Format("{0} {1}", token.TokenType, token.AccessToken);
+            client.Headers["Authorization"] = string.Format("{0} {1}", token.TokenType, token.AccessToken);
         }
 
         internal void SetJsonContentTypeHeader(WebClient client)
@@ -131,6 +141,21 @@ namespace LineMetrics.API.Services
 
         internal IList ToObjectList(string json, Type type)
         {
+
+            if (type == typeof(Table))
+            {
+                IList result = new List<Table>();
+                // replace the __type attributes of the json response to prevent a deserialization error
+                var data = (IList)DeSerialize(json.Replace("\"__type\":\"", "\"type\":\""));
+                foreach(Dictionary<string, object> tableData in data)
+                {
+                    Table table = new Table((Dictionary<string, object>)tableData["val"]);
+                    table.unixTicks = (long)tableData["ts"];
+                    result.Add(table);
+                }
+                return result;
+            }
+
             var serializer = new DataContractJsonSerializer(typeof(List<>).MakeGenericType(type));
             using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(json)))
             {

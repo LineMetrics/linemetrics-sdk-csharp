@@ -12,6 +12,7 @@ namespace LineMetrics.API.DataTypes
     [KnownType(typeof(Bool))]
     [KnownType(typeof(DataTypes.String))]
     [KnownType(typeof(DataTypes.Timestamp))]
+    [KnownType(typeof(Table))]
     public abstract class Base
     {
         [DataMember(Name = "ts", IsRequired = false, EmitDefaultValue = false)]
