@@ -1,6 +1,6 @@
 LineMetrics SDK for C#
 
-    Version:           2.1.0.2
+    Version:           2.1.0.3
     Date:              10.03.2017
     Developer:         Klemens Engelbrechtsmüller <k.engelbrechtsmueller@linemetrics.com>
 
